@@ -5,4 +5,4 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "secondbeat-waitlist"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "85fe836f-28e4-4074-b92b-5b96a4e6f1ac"
