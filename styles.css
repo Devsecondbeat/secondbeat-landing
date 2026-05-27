@@ -757,14 +757,15 @@ a { color: inherit; text-decoration: none; }
 
 .hero-card-mini {
   position: absolute;
-  bottom: 14%;
-  left: -6%;
-  z-index: 3;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 4;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.7rem 1rem;
   width: auto;
+  max-width: calc(100% - 2rem);
   animation: mini-bob 4s ease-in-out infinite 0.5s;
 }
 
@@ -1447,10 +1448,9 @@ a { color: inherit; text-decoration: none; }
   }
 
   .hero-card-mini {
-    left: 0;
-    right: auto;
-    bottom: 12%;
-    max-width: calc(100% - 1rem);
+    left: 0.65rem;
+    bottom: 2.75rem;
+    max-width: calc(100% - 1.3rem);
   }
 
   .hero-card-body {
