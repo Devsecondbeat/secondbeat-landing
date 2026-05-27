@@ -40,6 +40,30 @@ _Avoid_: Teachers, instructors (UI-friendly synonyms, but Tutors is the nav labe
 The social vertical for connecting with other musicians — follow, discover, share. Planned; not yet live.
 _Avoid_: Social network, feed
 
+**Visitor**:
+Someone on the landing page who has not created a SecondBeat account. A Visitor who submits their email for early access is still a Visitor — not an Artist yet.
+_Avoid_: User, lead, subscriber
+
+**Join the waitlist**:
+The act of a Visitor submitting their email (and optional instrument interest) to be contacted when Used Gear early access opens. Primary CTA label: **Join the waitlist**.
+_Avoid_: Sign up, register, subscribe, get notified (retired CTA label)
+
+**Instrument interest**:
+The type of instrument a Visitor cares about when joining the waitlist. Optional at signup; used for launch segmentation only — not an Instrument Ad. Allowed values: Acoustic, Electric, Drums, Piano, Classical, or Not sure. If the same email joins again, update instrument interest and still confirm success.
+_Avoid_: Category filter, listing type
+
+**Used Gear early access**:
+The upcoming opening of the Used Gear vertical. Visitors on the early access waitlist are emailed a link to create an Artist account when it opens.
+_Avoid_: Beta, launch, go-live (use early access)
+
+**Early access waitlist**:
+The collection of Visitors who have joined the waitlist to be contacted when **Used Gear** early access opens.
+_Avoid_: Mailing list, newsletter, user database
+
+**Waitlist email use**:
+SecondBeat may email a Visitor on the waitlist only about Used Gear availability and early access. Their email is not used for any other purpose.
+_Avoid_: Marketing list, promotional emails, third-party sharing
+
 ## Flagged ambiguities
 
 - **"Product" vs "Instrument Ad"**: The website route uses `/product/:id`, but the domain term is Instrument Ad. The route name is legacy; new copy should say "ad" or "listing."
@@ -58,3 +82,7 @@ _Avoid_: Social network, feed
 > **Dev:** And the Used Gear page shows all active ads?
 >
 > **Domain expert:** Right. When early access opens, browse Used Gear, tap an ad to see details, or go to Sell Your Instrument if you want to list one. You need to be signed in to sell.
+>
+> **Dev:** What about someone who only leaves their email on the landing page?
+>
+> **Domain expert:** They're still a Visitor — not an Artist yet. They join the waitlist for Used Gear early access. When we open, we email them a link to create their account.
