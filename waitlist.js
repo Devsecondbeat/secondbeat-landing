@@ -4,30 +4,80 @@
 
   var messageEl = document.getElementById("waitlist-message");
   var submitBtn = document.getElementById("waitlist-submit");
+  var successPanel = document.getElementById("waitlist-success");
+  var successTitle = document.getElementById("waitlist-success-title");
+  var successText = document.getElementById("waitlist-success-text");
+  var addAnotherBtn = document.getElementById("waitlist-add-another");
   var turnstileMount = document.getElementById("waitlist-turnstile");
   var siteKey = document.documentElement.getAttribute("data-turnstile-site-key") || "";
   var turnstileWidgetId = null;
-  var turnstileReady = false;
+  var submitLabel = submitBtn ? submitBtn.textContent : "Join the waitlist";
 
   function showMessage(text, isError) {
     if (!messageEl) return;
     messageEl.hidden = false;
     messageEl.textContent = text;
     messageEl.classList.toggle("waitlist-message-error", !!isError);
-    messageEl.classList.toggle("waitlist-message-success", !isError);
   }
 
   function clearMessage() {
     if (!messageEl) return;
     messageEl.hidden = true;
     messageEl.textContent = "";
-    messageEl.classList.remove("waitlist-message-error", "waitlist-message-success");
+    messageEl.classList.remove("waitlist-message-error");
   }
 
   function setSubmitting(isSubmitting) {
-    if (submitBtn) {
-      submitBtn.disabled = isSubmitting;
-      submitBtn.setAttribute("aria-busy", isSubmitting ? "true" : "false");
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.setAttribute("aria-busy", isSubmitting ? "true" : "false");
+    submitBtn.textContent = isSubmitting ? "Joining…" : submitLabel;
+  }
+
+  function resetWaitlistFields() {
+    var emailInput = form.querySelector("#waitlist-email");
+    var instrumentSelect = form.querySelector("#waitlist-instrument");
+    var consentInput = form.querySelector('input[name="consent"]');
+    if (emailInput) emailInput.value = "";
+    if (instrumentSelect) instrumentSelect.value = "";
+    if (consentInput) consentInput.checked = false;
+  }
+
+  function buildSuccessMessage(instrumentInterest) {
+    var message =
+      "We'll email you when Used Gear early access opens so you can create your Artist account.";
+    if (instrumentInterest) {
+      message += " We'll note your interest in " + instrumentInterest.toLowerCase() + " gear.";
+    }
+    return message;
+  }
+
+  function showSuccess(instrumentInterest) {
+    if (!successPanel || !successText) return;
+
+    clearMessage();
+    resetWaitlistFields();
+    resetTurnstile();
+    form.classList.add("is-success");
+    successPanel.hidden = false;
+    successText.textContent = buildSuccessMessage(instrumentInterest);
+
+    if (successTitle) {
+      successTitle.focus();
+    }
+  }
+
+  function showForm() {
+    if (!successPanel) return;
+
+    form.classList.remove("is-success");
+    successPanel.hidden = true;
+    clearMessage();
+    resetTurnstile();
+
+    var emailInput = form.querySelector("#waitlist-email");
+    if (emailInput) {
+      emailInput.focus();
     }
   }
 
@@ -47,15 +97,9 @@
       turnstileWidgetId = window.turnstile.render(turnstileMount, {
         sitekey: siteKey,
         theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light",
-        callback: function () {
-          turnstileReady = true;
-        },
-        "expired-callback": function () {
-          turnstileReady = false;
-        },
-        "error-callback": function () {
-          turnstileReady = false;
-        },
+        callback: function () {},
+        "expired-callback": function () {},
+        "error-callback": function () {},
       });
       onReady();
     }
@@ -85,11 +129,14 @@
   function resetTurnstile() {
     if (window.turnstile && turnstileWidgetId != null) {
       window.turnstile.reset(turnstileWidgetId);
-      turnstileReady = false;
     }
   }
 
   loadTurnstile(function () {});
+
+  if (addAnotherBtn) {
+    addAnotherBtn.addEventListener("click", showForm);
+  }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -103,6 +150,7 @@
     var emailInput = form.querySelector("#waitlist-email");
     var instrumentSelect = form.querySelector("#waitlist-instrument");
     var consentInput = form.querySelector('input[name="consent"]');
+    var instrumentInterest = instrumentSelect.value;
     var token = getTurnstileToken();
 
     if (siteKey && !token) {
@@ -120,7 +168,7 @@
       },
       body: JSON.stringify({
         email: emailInput.value,
-        instrument_interest: instrumentSelect.value,
+        instrument_interest: instrumentInterest,
         consent: consentInput.checked,
         turnstile_token: token,
         source: "landing-cta",
@@ -133,13 +181,7 @@
       })
       .then(function (result) {
         if (result.ok && result.data && result.data.ok) {
-          showMessage(
-            result.data.message ||
-              "You're on the list — we'll be in touch when Used Gear early access opens.",
-            false
-          );
-          form.reset();
-          resetTurnstile();
+          showSuccess(instrumentInterest);
           return;
         }
 

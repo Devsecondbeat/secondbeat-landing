@@ -351,41 +351,56 @@
             <h2>Ready to give your gear a second beat?</h2>
             <p>Join the early access waitlist for Used Gear — or preview what's ahead.</p>
             <form class="waitlist-form" id="waitlist-form" novalidate>
-              <div class="waitlist-fields">
-                <label class="sr-only" for="waitlist-email">Email</label>
-                <input
-                  id="waitlist-email"
-                  class="waitlist-input"
-                  type="email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  inputmode="email"
-                  placeholder="you@example.com"
-                />
-                <label class="waitlist-label" for="waitlist-instrument">Instrument interest (optional)</label>
-                <select id="waitlist-instrument" class="waitlist-select" name="instrument_interest">
-                  <option value="">Choose an instrument (optional)</option>
-                  <option value="Acoustic">Acoustic</option>
-                  <option value="Electric">Electric</option>
-                  <option value="Drums">Drums</option>
-                  <option value="Piano">Piano</option>
-                  <option value="Classical">Classical</option>
-                  <option value="Not sure">Not sure</option>
-                </select>
+              <div class="waitlist-form-body">
+                <div class="waitlist-fields">
+                  <label class="sr-only" for="waitlist-email">Email</label>
+                  <input
+                    id="waitlist-email"
+                    class="waitlist-input"
+                    type="email"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    inputmode="email"
+                    placeholder="you@example.com"
+                  />
+                  <label class="sr-only" for="waitlist-instrument">Instrument interest (optional)</label>
+                  <select id="waitlist-instrument" class="waitlist-select" name="instrument_interest">
+                    <option value="">Instrument interest (optional)</option>
+                    <option value="Acoustic">Acoustic</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Drums">Drums</option>
+                    <option value="Piano">Piano</option>
+                    <option value="Classical">Classical</option>
+                    <option value="Not sure">Not sure</option>
+                  </select>
+                </div>
+                <label class="waitlist-consent">
+                  <input type="checkbox" name="consent" required />
+                  <span>I agree to be contacted about Used Gear early access.</span>
+                </label>
+                <p class="waitlist-disclosure">
+                  Your email will only be used for SecondBeat communication about Used Gear availability. It will not be used for any other purpose.
+                </p>
+                <div class="waitlist-turnstile" id="waitlist-turnstile" aria-hidden="true"></div>
+                <p class="waitlist-message" id="waitlist-message" role="alert" aria-live="assertive" hidden></p>
+                <div class="waitlist-actions">
+                  <button type="submit" class="btn btn-accent btn-lg" id="waitlist-submit">Join the waitlist</button>
+                  <a href="#featured" class="btn btn-outline-light btn-lg">Preview Used Gear</a>
+                </div>
               </div>
-              <label class="waitlist-consent">
-                <input type="checkbox" name="consent" required />
-                <span>I agree to be contacted about Used Gear early access.</span>
-              </label>
-              <p class="waitlist-disclosure">
-                Your email will only be used for SecondBeat communication about Used Gear availability. It will not be used for any other purpose.
-              </p>
-              <div class="waitlist-turnstile" id="waitlist-turnstile" aria-hidden="true"></div>
-              <p class="waitlist-message" id="waitlist-message" role="status" aria-live="polite" hidden></p>
-              <div class="waitlist-actions">
-                <button type="submit" class="btn btn-accent btn-lg" id="waitlist-submit">Join the waitlist</button>
-                <a href="#featured" class="btn btn-outline-light btn-lg">Preview Used Gear</a>
+              <div class="waitlist-success" id="waitlist-success" hidden role="status" aria-live="polite">
+                <div class="waitlist-success-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                </div>
+                <h3 class="waitlist-success-title" id="waitlist-success-title" tabindex="-1">You're on the list</h3>
+                <p class="waitlist-success-text" id="waitlist-success-text"></p>
+                <div class="waitlist-success-actions">
+                  <a href="#featured" class="btn btn-accent btn-lg">Preview Used Gear</a>
+                  <button type="button" class="btn btn-outline-light btn-lg" id="waitlist-add-another">Add another email</button>
+                </div>
               </div>
             </form>
           </div>
