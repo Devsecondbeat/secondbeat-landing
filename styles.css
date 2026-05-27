@@ -409,8 +409,8 @@ a { color: inherit; text-decoration: none; }
 
 .chip-photos {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: var(--hero-overlay-gap, 1rem);
+  right: var(--hero-overlay-inline, 1rem);
   z-index: 3;
   background: var(--chip-bg);
   backdrop-filter: blur(8px);
@@ -577,6 +577,8 @@ a { color: inherit; text-decoration: none; }
   height: auto;
   margin-inline: auto;
   animation: hero-float 5s ease-in-out infinite;
+  --hero-carousel-duration: 25s;
+  --hero-carousel-step: 5s;
 }
 
 @keyframes hero-float {
@@ -612,60 +614,143 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "image"
+    "body";
+  --hero-overlay-gap: 1rem;
+  --hero-overlay-inline: 1rem;
+  --hero-dots-size: 4.75rem;
 }
 
 .hero-card-image {
+  grid-area: image;
   position: relative;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 250px;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.hero-photo-stack { position: absolute; inset: 0; }
+.hero-photo-stack {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-carousel-slide {
+  opacity: 0;
+  z-index: 0;
+  visibility: hidden;
+  pointer-events: none;
+  will-change: opacity;
+  backface-visibility: hidden;
+  animation: photo-fade var(--hero-carousel-duration) linear infinite;
+}
+
+.hero-photo-stack .hero-carousel-slide:nth-child(1),
+.hero-card-meta .hero-carousel-slide:nth-child(1),
+.hero-card-prices .hero-carousel-slide:nth-child(1),
+.hero-photo-dots .hero-carousel-slide:nth-child(1) {
+  animation-delay: calc(var(--hero-carousel-step) * -0.05);
+}
+
+.hero-photo-stack .hero-carousel-slide:nth-child(2),
+.hero-card-meta .hero-carousel-slide:nth-child(2),
+.hero-card-prices .hero-carousel-slide:nth-child(2),
+.hero-photo-dots .hero-carousel-slide:nth-child(2) {
+  animation-delay: calc(var(--hero-carousel-step) * 1);
+}
+
+.hero-photo-stack .hero-carousel-slide:nth-child(3),
+.hero-card-meta .hero-carousel-slide:nth-child(3),
+.hero-card-prices .hero-carousel-slide:nth-child(3),
+.hero-photo-dots .hero-carousel-slide:nth-child(3) {
+  animation-delay: calc(var(--hero-carousel-step) * 2);
+}
+
+.hero-photo-stack .hero-carousel-slide:nth-child(4),
+.hero-card-meta .hero-carousel-slide:nth-child(4),
+.hero-card-prices .hero-carousel-slide:nth-child(4),
+.hero-photo-dots .hero-carousel-slide:nth-child(4) {
+  animation-delay: calc(var(--hero-carousel-step) * 3);
+}
+
+.hero-photo-stack .hero-carousel-slide:nth-child(5),
+.hero-card-meta .hero-carousel-slide:nth-child(5),
+.hero-card-prices .hero-carousel-slide:nth-child(5),
+.hero-photo-dots .hero-carousel-slide:nth-child(5) {
+  animation-delay: calc(var(--hero-carousel-step) * 4);
+}
 
 .hero-photo {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  animation: photo-fade 15s ease-in-out infinite;
 }
-
-.hero-photo-1 { animation-delay: 0s; }
-.hero-photo-2 { animation-delay: 3s; }
-.hero-photo-3 { animation-delay: 6s; }
-.hero-photo-4 { animation-delay: 9s; }
-.hero-photo-5 { animation-delay: 12s; }
 
 .hero-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: translateZ(0);
 }
 
 @keyframes photo-fade {
-  0%, 16%, 100% { opacity: 0; }
-  4%, 12% { opacity: 1; }
+  0% {
+    opacity: 0;
+    z-index: 0;
+    visibility: hidden;
+    pointer-events: none;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  1% {
+    visibility: visible;
+  }
+  5% {
+    opacity: 1;
+    z-index: 2;
+    visibility: visible;
+    pointer-events: auto;
+    animation-timing-function: linear;
+  }
+  20% {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  }
+  25% {
+    opacity: 0;
+    z-index: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .chip-live,
 .chip-preview {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: var(--hero-overlay-gap, 1rem);
+  left: var(--hero-overlay-inline, 1rem);
   z-index: 3;
 }
 
 .hero-photo-dots {
   position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: var(--hero-overlay-gap, 1rem);
+  right: var(--hero-overlay-inline, 1rem);
+  left: auto;
   z-index: 3;
   display: flex;
   gap: 0.4rem;
@@ -676,21 +761,44 @@ a { color: inherit; text-decoration: none; }
   height: 7px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.35);
-  animation: dot-active 15s ease-in-out infinite;
 }
 
-.hero-dot:nth-child(1) { animation-delay: 0s; }
-.hero-dot:nth-child(2) { animation-delay: 3s; }
-.hero-dot:nth-child(3) { animation-delay: 6s; }
-.hero-dot:nth-child(4) { animation-delay: 9s; }
-.hero-dot:nth-child(5) { animation-delay: 12s; }
+.hero-photo-dots .hero-carousel-slide {
+  animation-name: dot-active;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: auto;
+}
 
 @keyframes dot-active {
-  0%, 16%, 100% { background: rgba(255,255,255,0.35); transform: scale(1); }
-  4%, 12% { background: #ffffff; transform: scale(1.3); }
+  0% {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  5% {
+    background: #ffffff;
+    transform: scale(1.2);
+    animation-timing-function: linear;
+  }
+  20% {
+    background: #ffffff;
+    transform: scale(1.2);
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  }
+  25% {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1);
+  }
 }
 
 .hero-card-body {
+  grid-area: body;
   padding: 1.1rem 1.4rem;
   display: flex;
   justify-content: space-between;
@@ -711,22 +819,22 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.3rem;
   justify-content: center;
-  opacity: 0;
-  animation: photo-fade 15s ease-in-out infinite;
 }
-
-.hero-listing-1 { animation-delay: 0s; }
-.hero-listing-2 { animation-delay: 3s; }
-.hero-listing-3 { animation-delay: 6s; }
-.hero-listing-4 { animation-delay: 9s; }
-.hero-listing-5 { animation-delay: 12s; }
 
 .hero-card-title {
   font-weight: 700;
   font-size: 1.02rem;
   line-height: 1.25;
+}
+
+.hero-listing .chip-condition {
+  padding: 0.15rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .hero-card-prices {
@@ -745,33 +853,21 @@ a { color: inherit; text-decoration: none; }
   font-weight: 800;
   font-size: 1.2rem;
   color: var(--amber-deep);
-  opacity: 0;
-  animation: photo-fade 15s ease-in-out infinite;
 }
 
-.hero-price-1 { animation-delay: 0s; }
-.hero-price-2 { animation-delay: 3s; }
-.hero-price-3 { animation-delay: 6s; }
-.hero-price-4 { animation-delay: 9s; }
-.hero-price-5 { animation-delay: 12s; }
-
 .hero-card-mini {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  grid-area: image;
+  align-self: end;
+  justify-self: start;
+  position: relative;
   z-index: 4;
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  margin: 0 0 var(--hero-overlay-gap, 1rem) var(--hero-overlay-inline, 1rem);
   padding: 0.7rem 1rem;
-  width: auto;
-  max-width: calc(100% - 2rem);
-  animation: mini-bob 4s ease-in-out infinite 0.5s;
-}
-
-@keyframes mini-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  width: max-content;
+  max-width: min(11.75rem, calc(100% - var(--hero-dots-size, 4.75rem) - var(--hero-overlay-inline, 1rem) - 0.5rem));
 }
 
 .mini-icon { font-size: 1.1rem; }
@@ -1327,9 +1423,13 @@ a { color: inherit; text-decoration: none; }
     transition-duration: 0.01ms !important;
   }
 
-  .hero-photo-1 { opacity: 1; }
-  .hero-listing-1,
-  .hero-price-1 { opacity: 1; }
+  .hero-photo-stack .hero-carousel-slide:first-child,
+  .hero-card-meta .hero-carousel-slide:first-child,
+  .hero-card-prices .hero-carousel-slide:first-child {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
 }
 
 /* ── Responsive ── */
@@ -1358,6 +1458,12 @@ a { color: inherit; text-decoration: none; }
   .hero-visual {
     width: min(100%, clamp(260px, 72vw, 382.5px));
     margin-top: 2rem;
+  }
+
+  .hero-card-main {
+    --hero-overlay-gap: 0.9rem;
+    --hero-overlay-inline: 0.9rem;
+    --hero-dots-size: 4.5rem;
   }
 
   .bento {
@@ -1447,10 +1553,15 @@ a { color: inherit; text-decoration: none; }
     width: min(100%, clamp(240px, 85vw, 340px));
   }
 
+  .hero-card-main {
+    --hero-overlay-gap: 0.85rem;
+    --hero-overlay-inline: 0.85rem;
+    --hero-dots-size: 4.25rem;
+  }
+
   .hero-card-mini {
-    left: 0.65rem;
-    bottom: 2.75rem;
-    max-width: calc(100% - 1.3rem);
+    padding: 0.65rem 0.9rem;
+    gap: 0.5rem;
   }
 
   .hero-card-body {
@@ -1574,6 +1685,38 @@ a { color: inherit; text-decoration: none; }
     width: min(100%, clamp(220px, 88vw, 306px));
   }
 
+  .hero-card-main {
+    --hero-overlay-gap: 0.65rem;
+    --hero-overlay-inline: 0.65rem;
+    --hero-dots-size: 3.85rem;
+  }
+
+  .hero-card-mini {
+    padding: 0.6rem 0.8rem;
+    gap: 0.45rem;
+  }
+
+  .hero-card-mini strong {
+    font-size: 0.78rem;
+  }
+
+  .hero-card-mini span {
+    font-size: 0.68rem;
+  }
+
+  .mini-icon {
+    font-size: 1rem;
+  }
+
+  .hero-photo-dots {
+    gap: 0.3rem;
+  }
+
+  .hero-dot {
+    width: 6px;
+    height: 6px;
+  }
+
   .hero-card-ghost-1 {
     transform: rotate(5deg) translate(8px, 8px);
   }
@@ -1583,8 +1726,6 @@ a { color: inherit; text-decoration: none; }
   }
 
   .chip-photos {
-    top: 0.65rem;
-    right: 0.65rem;
     padding: 0.35rem 0.55rem;
     font-size: 0.65rem;
   }
@@ -1593,9 +1734,8 @@ a { color: inherit; text-decoration: none; }
     font-size: 1.1rem;
   }
 
-  .chip-live {
-    top: 0.65rem;
-    left: 0.65rem;
+  .chip-live,
+  .chip-preview {
     font-size: 0.65rem;
   }
 
@@ -1609,9 +1749,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 380px) {
+  .hero-card-main {
+    --hero-dots-size: 3.5rem;
+  }
+
+  .hero-card-mini {
+    max-width: min(10.25rem, calc(100% - var(--hero-dots-size) - var(--hero-overlay-inline) - 0.35rem));
+    padding: 0.55rem 0.75rem;
+  }
+
   .hero-card-body {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .hero-card-meta {
+    min-height: 2.75rem;
   }
 
   .hero-card-price {
