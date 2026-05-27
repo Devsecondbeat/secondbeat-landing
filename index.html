@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SecondBeat — Used Gear early access opening soon. Buy and sell pre-owned instruments, find tutors, and connect with musicians across India."
+    />
+    <title>SecondBeat — Music lives on</title>
+    <link rel="icon" href="assets/secondbeat-icon.svg" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="images/instruments/acoustic.webp" as="image" type="image/webp" />
+    <link rel="stylesheet" href="fonts.css" />
+    <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}[data-theme=light]{--bg:#faf6ee;--bg-secondary:#f1e5cf;--surface:#fff;--text:#0f172a;--text-muted:#475569;--text-inverse:#f1e5cf;--border:rgba(15,23,42,.08);--border-strong:rgba(15,23,42,.18);--nav-bg:rgba(250,246,238,.88);--shadow:0 4px 24px rgba(15,23,42,.07);--btn-primary-bg:#0f172a;--btn-primary-hover:#1e293b;--amber:#d97706;--amber-deep:#b45309}[data-theme=dark]{--bg:#0a0c10;--bg-secondary:#12161f;--surface:#1c2230;--text:#f1e5cf;--text-muted:#94a3b8;--text-inverse:#0f172a;--border:rgba(241,229,207,.1);--border-strong:rgba(241,229,207,.2);--nav-bg:rgba(10,12,16,.92);--btn-primary-bg:#d97706;--btn-primary-hover:#b45309;--amber:#d97706;--amber-deep:#b45309}:root{--font:"Inter",system-ui,sans-serif;--display:"Fraunces",Georgia,serif;--radius:14px;--radius-xl:28px}html{-webkit-text-size-adjust:100%}body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}.container{width:min(1140px,92vw);margin-inline:auto}.page-bg{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-secondary) 100%)}.nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}.nav-inner{display:flex;align-items:center;justify-content:space-between;height:4.5rem}.logo{display:flex;align-items:center;gap:.65rem}.logo-text{font-family:var(--display);font-size:1.45rem;font-weight:800;line-height:1}.logo-accent{color:var(--amber)}.nav-links{display:flex;gap:.35rem;list-style:none}.nav-links a{padding:.45rem 1.1rem;border-radius:999px;font-weight:600;font-size:.88rem}.nav-cta{display:flex;align-items:center;gap:.6rem}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.7rem 1.35rem;border-radius:999px;font-weight:600;font-size:.92rem;border:2px solid transparent}.btn-lg{padding:.85rem 1.75rem;font-size:1rem}.btn-primary{background:var(--btn-primary-bg);color:var(--text-inverse)}.hero{padding:4rem 0 3rem;overflow-x:clip}.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,4vw,3rem);align-items:center}.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem .4rem .65rem;background:var(--surface);border:1px solid var(--border);border-radius:999px;font-size:.82rem;font-weight:700;color:var(--amber-deep);margin-bottom:1.5rem}.hero h1{font-family:var(--display);font-size:clamp(2.6rem,5.5vw,4rem);font-weight:800;line-height:1.08;margin-bottom:1.25rem}.text-gradient{background:linear-gradient(135deg,var(--amber-deep),#c2410c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.hero-lead{font-size:1.12rem;color:var(--text-muted);max-width:30rem;margin-bottom:2rem}.hero-actions{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:2.5rem}.hero-visual{position:relative;width:min(100%,clamp(240px,42vw,382.5px));aspect-ratio:1;margin-inline:auto}.hero-card{background:var(--surface);border-radius:var(--radius-xl);overflow:hidden}.hero-card-main{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column}.hero-card-image{position:relative;flex:1;min-height:250px;overflow:hidden}.hero-photo-stack{position:absolute;inset:0}.hero-photo{position:absolute;inset:0}.hero-photo img{width:100%;height:100%;object-fit:cover}
+    </style>
+    <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="styles.min.css" /></noscript>
+  </head>
+  <body>
+    <div class="page-bg" aria-hidden="true">
+      <div class="page-blob page-blob-1"></div>
+      <div class="page-blob page-blob-2"></div>
+      <div class="page-blob page-blob-3"></div>
+    </div>
+
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="#" class="logo">
+          <img src="assets/secondbeat-icon.svg" alt="" class="logo-icon" width="40" height="40" />
+          <span class="logo-text">Second<span class="logo-accent">Beat</span></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#used-gear" class="active">Used Gear</a></li>
+          <li><a href="#tutors">Tutors</a></li>
+          <li><a href="#community">Community</a></li>
+        </ul>
+        <div class="nav-cta">
+          <button type="button" class="theme-toggle" aria-label="Switch theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          </button>
+          <a href="#get-started" class="btn btn-primary">Get notified</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <div class="hero-badge">
+              <span class="pulse-dot"></span>
+              Early access opening soon
+            </div>
+            <h1>
+              Every instrument deserves a
+              <span class="text-gradient">second beat</span>
+            </h1>
+            <p class="hero-lead">
+              Used Gear early access opening soon — buy and sell pre-owned instruments, find tutors,
+              and grow your scene. A marketplace built for artists, by artists.
+            </p>
+            <div class="hero-actions">
+              <a href="#featured" class="btn btn-primary btn-lg">
+                Preview Used Gear
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="#get-started" class="btn btn-outline btn-lg">Get notified</a>
+            </div>
+            <div class="hero-trust">
+              <div class="trust-item">
+                <strong>3</strong>
+                <span>ads per artist</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <strong>5</strong>
+                <span>photos per ad</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <strong>₹</strong>
+                <span>rupee pricing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal reveal-delay" aria-hidden="true">
+            <div class="hero-card hero-card-ghost hero-card-ghost-2"></div>
+            <div class="hero-card hero-card-ghost hero-card-ghost-1"></div>
+
+            <div class="hero-card hero-card-main">
+              <div class="hero-card-image">
+                <div class="hero-photo-stack">
+                  <div class="hero-photo hero-photo-1">
+                    <img src="images/instruments/acoustic.webp" alt="Brown acoustic guitar on a wooden floor" width="480" height="540" loading="eager" fetchpriority="high" decoding="async" />
+                  </div>
+                  <div class="hero-photo hero-photo-2">
+                    <img src="images/instruments/electric.webp" alt="Stratocaster-style electric guitar" width="400" height="450" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="hero-photo hero-photo-3">
+                    <img src="images/instruments/drums.webp" alt="Red drum kit" width="400" height="450" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="hero-photo hero-photo-4">
+                    <img src="images/instruments/piano.webp" alt="Close-up of piano keys" width="400" height="450" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="hero-photo hero-photo-5">
+                    <img src="images/instruments/classical.webp" alt="Brown cutaway acoustic guitar" width="400" height="450" loading="lazy" decoding="async" />
+                  </div>
+                </div>
+                <span class="chip chip-preview">Preview ad</span>
+                <div class="chip chip-photos"><strong>5</strong> photos</div>
+                <div class="hero-photo-dots">
+                  <span class="hero-dot"></span>
+                  <span class="hero-dot"></span>
+                  <span class="hero-dot"></span>
+                  <span class="hero-dot"></span>
+                  <span class="hero-dot"></span>
+                </div>
+              </div>
+              <div class="hero-card-body">
+                <div class="hero-card-meta">
+                  <div class="hero-listing hero-listing-1">
+                    <span class="hero-card-title">Yamaha FG800 — Acoustic</span>
+                    <span class="chip chip-condition">Good</span>
+                  </div>
+                  <div class="hero-listing hero-listing-2">
+                    <span class="hero-card-title">Fender Stratocaster — Electric</span>
+                    <span class="chip chip-condition">Excellent</span>
+                  </div>
+                  <div class="hero-listing hero-listing-3">
+                    <span class="hero-card-title">Donner DED-200 — Drum Kit</span>
+                    <span class="chip chip-condition">Fair</span>
+                  </div>
+                  <div class="hero-listing hero-listing-4">
+                    <span class="hero-card-title">Yamaha P-45 — Digital Piano</span>
+                    <span class="chip chip-condition">Good</span>
+                  </div>
+                  <div class="hero-listing hero-listing-5">
+                    <span class="hero-card-title">Pyle Classical — Nylon</span>
+                    <span class="chip chip-condition">Good</span>
+                  </div>
+                </div>
+                <div class="hero-card-prices">
+                  <span class="hero-card-price hero-price-1">₹12,500</span>
+                  <span class="hero-card-price hero-price-2">₹28,000</span>
+                  <span class="hero-card-price hero-price-3">₹18,900</span>
+                  <span class="hero-card-price hero-price-4">₹32,000</span>
+                  <span class="hero-card-price hero-price-5">₹4,200</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-card hero-card-mini">
+              <span class="mini-icon">📍</span>
+              <div>
+                <strong>Chennai</strong>
+                <span>12 km away</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured listings -->
+      <section class="featured" id="featured">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Used Gear — early access opening soon</p>
+            <h2>Instrument Ads worth a look</h2>
+            <p class="section-desc">A preview of how listings will look — browse, filter, and find your next sound when early access opens.</p>
+          </div>
+          <div class="listing-track reveal reveal-delay">
+            <article class="listing-card listing-card-1">
+              <div class="listing-visual">
+                <img src="images/instruments/electric-thumb.webp" alt="Fender Stratocaster electric guitar" width="480" height="320" loading="lazy" decoding="async" />
+              </div>
+              <div class="listing-body">
+                <span class="listing-make">Fender</span>
+                <h3>Stratocaster — Electric</h3>
+                <div class="listing-footer">
+                  <span class="chip chip-condition">Excellent</span>
+                  <span class="listing-price">₹28,000</span>
+                </div>
+              </div>
+            </article>
+            <article class="listing-card listing-card-2">
+              <div class="listing-visual">
+                <img src="images/instruments/acoustic-thumb.webp" alt="Yamaha FG800 acoustic guitar" width="480" height="320" loading="lazy" decoding="async" />
+              </div>
+              <div class="listing-body">
+                <span class="listing-make">Yamaha</span>
+                <h3>FG800 — Acoustic</h3>
+                <div class="listing-footer">
+                  <span class="chip chip-condition">Good</span>
+                  <span class="listing-price">₹12,500</span>
+                </div>
+              </div>
+            </article>
+            <article class="listing-card listing-card-3">
+              <div class="listing-visual">
+                <img src="images/instruments/drums-thumb.webp" alt="Donner electronic drum kit" width="480" height="320" loading="lazy" decoding="async" />
+              </div>
+              <div class="listing-body">
+                <span class="listing-make">Donner</span>
+                <h3>DED-200 — Electronic Kit</h3>
+                <div class="listing-footer">
+                  <span class="chip chip-condition">Fair</span>
+                  <span class="listing-price">₹18,900</span>
+                </div>
+              </div>
+            </article>
+            <article class="listing-card listing-card-4">
+              <div class="listing-visual">
+                <img src="images/instruments/classical-thumb.webp" alt="Pyle classical nylon guitar" width="480" height="320" loading="lazy" decoding="async" />
+              </div>
+              <div class="listing-body">
+                <span class="listing-make">Pyle</span>
+                <h3>Classical Nylon — Beginner</h3>
+                <div class="listing-footer">
+                  <span class="chip chip-condition">Good</span>
+                  <span class="listing-price">₹4,200</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pillars bento -->
+      <section class="pillars" id="used-gear">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Three ways to play</p>
+            <h2>One platform for your whole musical life</h2>
+          </div>
+          <div class="bento reveal reveal-delay">
+            <article class="bento-card bento-gear" id="sell">
+              <div class="bento-glow"></div>
+              <div class="bento-icon">🎸</div>
+              <span class="bento-tag tag-soon">Early access opening soon</span>
+              <h3>Used Gear</h3>
+              <p>When early access opens, browse Instrument Ads, list up to three of your own with five photos each, and pass instruments to the next artist.</p>
+              <div class="bento-footer">
+                <span class="bento-link bento-link-muted">Early access opening soon</span>
+              </div>
+            </article>
+            <article class="bento-card bento-tutors" id="tutors">
+              <div class="bento-glow"></div>
+              <div class="bento-icon">📖</div>
+              <span class="bento-tag tag-soon">Coming soon</span>
+              <h3>Tutors</h3>
+              <p>Find music tutors near you or offer lessons. First class free, hourly rates, reviews.</p>
+              <div class="bento-footer">
+                <span class="bento-link bento-link-muted">Coming soon</span>
+              </div>
+            </article>
+            <article class="bento-card bento-community" id="community">
+              <div class="bento-glow"></div>
+              <div class="bento-icon">🤝</div>
+              <span class="bento-tag tag-soon">Coming soon</span>
+              <h3>Community</h3>
+              <p>Follow artists, discover musicians in your city, and share what you're playing.</p>
+              <div class="bento-footer">
+                <span class="bento-link bento-link-muted">Coming soon</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works timeline -->
+      <section class="how">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">How it works</p>
+            <h2>From listing to sold in four beats</h2>
+            <p class="section-desc">Early access opening soon — sign up now to post an Instrument Ad and connect with buyers when early access opens.</p>
+          </div>
+          <div class="timeline reveal reveal-delay">
+            <div class="timeline-step">
+              <div class="timeline-node">1</div>
+              <div class="timeline-card">
+                <span class="timeline-icon">✦</span>
+                <h3>Create your account</h3>
+                <p>Sign up as an artist. Secure auth keeps your profile and listings safe.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-node">2</div>
+              <div class="timeline-card">
+                <span class="timeline-icon">📷</span>
+                <h3>Post an Instrument Ad</h3>
+                <p>Title, Make, condition, price — up to three ads per artist, five photos each.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-node">3</div>
+              <div class="timeline-card">
+                <span class="timeline-icon">🔍</span>
+                <h3>Get discovered</h3>
+                <p>When early access opens, buyers will browse Used Gear, filter by category and brand, and view your ad.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-node">4</div>
+              <div class="timeline-card">
+                <span class="timeline-icon">♪</span>
+                <h3>Find a new home</h3>
+                <p>Pass your instrument to another musician who'll give it a second beat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats tiles -->
+      <section class="stats">
+        <div class="container stats-grid reveal">
+          <div class="stat-tile stat-tile-1">
+            <span class="stat-icon">📋</span>
+            <div class="stat-value">3</div>
+            <div class="stat-label">Instrument Ads max per artist</div>
+          </div>
+          <div class="stat-tile stat-tile-2">
+            <span class="stat-icon">📸</span>
+            <div class="stat-value">5</div>
+            <div class="stat-label">Photos max per Instrument Ad</div>
+          </div>
+          <div class="stat-tile stat-tile-3">
+            <span class="stat-icon">🇮🇳</span>
+            <div class="stat-value">₹</div>
+            <div class="stat-label">Rupee pricing, built for India</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta" id="get-started">
+        <div class="container">
+          <div class="cta-box reveal">
+            <div class="cta-wave" aria-hidden="true">
+              <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z" fill="rgba(241,229,207,0.08)"/>
+              </svg>
+            </div>
+            <div class="cta-notes" aria-hidden="true">♪ ♫ ♩ ♬</div>
+            <h2>Ready to give your gear a second beat?</h2>
+            <p>Join SecondBeat — get notified when early access opens, or preview what's ahead.</p>
+            <div class="cta-actions">
+              <a href="#get-started" class="btn btn-accent btn-lg">Get notified</a>
+              <a href="#featured" class="btn btn-outline-light btn-lg">Preview Used Gear</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo logo-footer">
+            <img src="assets/secondbeat-icon.svg" alt="" class="logo-icon" width="36" height="36" />
+            <span class="logo-text">Second<span class="logo-accent">Beat</span></span>
+          </a>
+          <p>Music lives on.</p>
+        </div>
+        <div class="footer-links">
+          <p class="footer-label">Platform</p>
+          <a href="#used-gear">Used Gear</a>
+          <a href="#tutors">Tutors</a>
+          <a href="#community">Community</a>
+        </div>
+        <div class="footer-links">
+          <p class="footer-label">Support</p>
+          <a href="mailto:support@secondbeat.in">support@secondbeat.in</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>&copy; 2026 SecondBeat. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="theme.js" defer></script>
+  </body>
+</html>
+<!-- v3: real photos + light/dark theme -->

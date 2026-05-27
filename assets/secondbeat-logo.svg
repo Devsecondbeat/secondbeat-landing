@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 40" fill="none" aria-labelledby="logoTitle">
+  <title id="logoTitle">SecondBeat</title>
+  <rect x="0" y="0" width="40" height="40" rx="10" fill="#1e293b"/>
+  <ellipse cx="10.5" cy="28.5" rx="5" ry="4.1" fill="#f59e0b" transform="rotate(-20 10.5 28.5)"/>
+  <path d="M14.3 26.8V10.5" stroke="#f59e0b" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M15.5 18.2H18.8L20.1 13.8L21.4 22.4L22.7 15.6L24 18.2H30.5" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50" y="27" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="800" fill="#1e293b">Second</text>
+  <text x="138" y="27" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="800" fill="#d97706">Beat</text>
+</svg>
